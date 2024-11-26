@@ -122,3 +122,16 @@ D:\Programming\Git\For Publish\MineSwepper\MineSwepper\obj\Debug\Mine Swepper.ex
 D:\Programming\Git\For Publish\MineSwepper\MineSwepper\obj\Debug\Mine Swepper.application
 D:\Programming\Git\For Publish\MineSwepper\MineSwepper\obj\Debug\Mine Swepper.exe
 D:\Programming\Git\For Publish\MineSwepper\MineSwepper\obj\Debug\Mine Swepper.pdb
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\bin\Debug\Mine Swepper.exe.config
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\bin\Debug\Mine Swepper.exe.manifest
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\bin\Debug\Mine Swepper.application
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\bin\Debug\Mine Swepper.exe
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\bin\Debug\Mine Swepper.pdb
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\MineSwepper.MainForm.resources
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\MineSwepperGame.Properties.Resources.resources
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\MineSwepper.csproj.GenerateResource.cache
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\MineSwepper.csproj.CoreCompileInputs.cache
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\Mine Swepper.exe.manifest
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\Mine Swepper.application
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\Mine Swepper.exe
+D:\Programming\Git\For Publish\Mine Sweeper\Mine-Sweeper\MineSwepper\obj\Debug\Mine Swepper.pdb
