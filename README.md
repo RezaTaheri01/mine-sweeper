@@ -21,8 +21,4 @@ Watch the game in action:
 - [x] Add Project's Code
 - [x] Optimize Project's Code
 
----
-
-Enjoy playing, and feel free to contribute or improve the code!
-
 * * *
