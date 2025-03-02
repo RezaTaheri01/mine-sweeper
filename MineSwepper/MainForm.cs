@@ -177,6 +177,7 @@ namespace MineSwepper
             globals.curr_board_height = globals.sizes[3][2];
             globals.curr_mine_precent = globals.sizes[3][3];
             globals.curr_mine_time = globals.sizes[3][4];
+            globals.change_font_size();
 
             label2.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 32, 0);
             label1.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 64, 31);
@@ -203,6 +204,7 @@ namespace MineSwepper
             globals.curr_board_height = globals.sizes[1][2];
             globals.curr_mine_precent = globals.sizes[1][3];
             globals.curr_mine_time = globals.sizes[1][4];
+            globals.change_font_size();
 
             label2.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 32, 0);
             label1.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 64, 31);
@@ -230,6 +232,7 @@ namespace MineSwepper
             globals.curr_board_height = globals.sizes[2][2];
             globals.curr_mine_precent = globals.sizes[2][3];
             globals.curr_mine_time = globals.sizes[2][4];
+            globals.change_font_size();
 
             label2.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 32, 0);
             label1.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 64, 31);
@@ -254,6 +257,7 @@ namespace MineSwepper
             globals.curr_board_height = globals.sizes[0][2];
             globals.curr_mine_precent = globals.sizes[0][3];
             globals.curr_mine_time = globals.sizes[0][4];
+            globals.change_font_size();
 
             label2.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 32, 0);
             label1.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 64, 31);

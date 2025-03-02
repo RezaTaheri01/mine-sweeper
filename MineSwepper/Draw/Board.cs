@@ -128,21 +128,18 @@ namespace MineSwepper.Draw
                                 graphics.DrawRectangle(pen1, Cell[i, j].Rect);
                             }
                         }
-                        if (iB == 10)
-                        {
-                            TextX = Cell[i, j].Rect.X + 12;
-                            TextY = Cell[i, j].Rect.Y + 12;
-                        }
-                        else if (iB == 15)
-                        {
-                            TextX = Cell[i, j].Rect.X + 10;
-                            TextY = Cell[i, j].Rect.Y + 8;
-                        }
-                        else if (iB == 20)
-                        {
-                            TextX = Cell[i, j].Rect.X + 8;
-                            TextY = Cell[i, j].Rect.Y + 6;
-                        }
+                        // Calculate the center position
+                        float centerX = Cell[i, j].Rect.X + (globals.curr_cube_size / 2);
+                        float centerY = Cell[i, j].Rect.Y + (globals.curr_cube_size / 2);
+
+                        // Measure the text size
+                        SizeF textSize = graphics.MeasureString(Cell[i, j].MineCounter.ToString(), globals.font);
+
+                        // Adjust the position to center the text
+                        float textX = centerX - (textSize.Width / 2);
+                        float textY = centerY - (textSize.Height / 2);
+                        //TextX = Cell[i, j].Rect.X;
+                        //TextY = Cell[i, j].Rect.Y;
                         if (Cell[i, j].IsClick == true)
                         {
                             if (Cell[i, j].IsMine == false)
@@ -151,8 +148,7 @@ namespace MineSwepper.Draw
                                 if (MC != 0)
                                 {
                                     brush = globals.mineCountColors[MC - 1];
-                                    Font font = new Font("Serif", 12, FontStyle.Bold);
-                                    graphics.DrawString(Cell[i, j].MineCounter.ToString(), font, brush, TextX, TextY);
+                                    graphics.DrawString(Cell[i, j].MineCounter.ToString(), globals.font, brush, textX, textY);
                                 }
                             }
                         }

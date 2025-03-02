@@ -29,6 +29,9 @@ namespace MineSwepperGame.MineSwepperCodes
         public Pen pen = new Pen(Brushes.DarkOliveGreen, 3);
         public Pen pen2 = new Pen(Brushes.DarkGreen, 2);
 
+        // mine counter font
+        public Font font;
+
         public int curr_cube_size = 45;
         public int curr_board_width= 10;
         public int curr_board_height= 10;
@@ -38,10 +41,10 @@ namespace MineSwepperGame.MineSwepperCodes
         // Cube Size(cell), Board Width, Board Height, Mines Precents, minesAnimationTimer
         // Board Width => cell in row
         // Board Height => cell in column
-        int[] easy = new int[5] { 35, 10, 10, 10, 65 };
+        int[] easy = new int[5] { 40, 10, 10, 10, 75 };
         int[] medium = new int[5] { 30, 16, 16, 18, 40 };
-        int[] hard = new int[5] { 27, 20, 20, 20, 20 };
-        int[] ultra_hard = new int[5] { 25, 30, 20, 22, 7 };
+        int[] hard = new int[5] { 28, 20, 20, 20, 20 };
+        int[] ultra_hard = new int[5] { 28, 30, 20, 22, 7 };
         // width and height should be even that labels place in the middle
 
         public int[][] sizes;
@@ -59,6 +62,12 @@ namespace MineSwepperGame.MineSwepperCodes
             curr_board_height = sizes[0][2];
             curr_mine_precent = sizes[0][3];
             curr_mine_time = sizes[0][4];
+            change_font_size();
+        }
+
+        public void change_font_size()
+        {
+            font = new Font("Serif", curr_cube_size * 9 / 20, FontStyle.Bold);
         }
     }
 }
