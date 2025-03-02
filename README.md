@@ -11,7 +11,7 @@ This is an implementation of the **Mine Sweeper** game using **Windows Forms** i
 Watch the game in action:
 
 <div align="center">
-    <video src="https://github.com/user-attachments/assets/1b46453e-f098-49ad-8a79-d0e07ed8eec7" loop></video>
+    <video src="https://github.com/user-attachments/assets/07a376b0-be19-4831-b1c8-d9313f0115e2" loop></video>
 </div>
 
 ---
