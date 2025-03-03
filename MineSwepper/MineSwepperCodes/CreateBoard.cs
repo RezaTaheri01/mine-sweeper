@@ -66,6 +66,7 @@ namespace MineSwepper.MineSwepperCodes
             MineCount(Cell);
             return Cell;
         }
+
         public void MineCount(Cells [,] Cell)
         {
             for (int j = 0; j < Cell.GetLength(1); j++)
@@ -76,6 +77,7 @@ namespace MineSwepper.MineSwepperCodes
                 }
             }
         }
+
         private int CalculateMine(Cells[,] cell, int iIndex, int jIndex)
         {
             if(Cell[iIndex,jIndex].IsMine==true)

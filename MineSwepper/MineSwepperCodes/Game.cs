@@ -4,13 +4,6 @@ using MineSwepper.Draw;
 using System.Windows.Forms;
 using MineSwepperGame.MineSwepperCodes;
 
-//using System;
-//using System.Linq;
-//using System.Text;
-//using System.Collections;
-//using System.Threading.Tasks;
-
-
 
 namespace MineSwepper.MineSwepperCodes
 {
@@ -28,6 +21,7 @@ namespace MineSwepper.MineSwepperCodes
             { 
                 CreateBoard CB = new CreateBoard();
                 Cell = CB.Init(globals.curr_board_width, globals.curr_board_height, globals);
+
                 File.WriteAllText(globals.Path, "");
                 CleanCache = false;
             }

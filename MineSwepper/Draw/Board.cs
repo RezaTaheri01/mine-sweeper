@@ -9,17 +9,22 @@ namespace MineSwepper.Draw
     class Board
     {
         Game G = new Game();
+
         public MainForm Form1;
-        public int iB, jB;
-        int c = 0;
-        private int SoilCount;
         Brush brush, brushMineM, brushGrass1, brushGrass2, brushSoil1, brushSoil2, brushMine;
-        public bool found = false;
+
+        int c = 0;
+        public int iB, jB;
+        private int SoilCount;
+
         bool Win = false;
-        public bool GameOverF = false;
         public bool Use = true;
+        public bool found = false;
+        public bool GameOverF = false;
+
+
         internal void DrawB(Graphics graphics, Cells[,] Cell, System.Windows.Forms.Label label1,
-            System.Windows.Forms.Timer timer, int v, Globals globals)
+                            System.Windows.Forms.Timer timer, int v, Globals globals)
         {
             if (found == false)
             {
@@ -33,6 +38,7 @@ namespace MineSwepper.Draw
                 brushGrass2 = globals.brushGrass2;
                 brushSoil1 = globals.brushSoil1;
                 brushSoil2 = globals.brushSoil2;
+
                 Pen pen = globals.pen;
 
                 found = false;
@@ -40,8 +46,8 @@ namespace MineSwepper.Draw
                 {
                     for (int i = 0; i < Cell.GetLength(0); i++)
                     {
-                        int TextX = Cell[i, j].Rect.X + 4;
-                        int TextY = Cell[i, j].Rect.Y + 4;
+                        //int TextX = Cell[i, j].Rect.X + 4;
+                        //int TextY = Cell[i, j].Rect.Y + 4;
                         if (j % 2 == 0)
                         {
                             if (i % 2 == 0)
@@ -64,10 +70,7 @@ namespace MineSwepper.Draw
                                 brush = brushGrass1;
                             }
                         }
-                        if (Cell[i, j].flag == true && Cell[i, j].IsClick == false)
-                        {
-                        }
-                        else
+                        if (Cell[i, j].flag != true || Cell[i, j].IsClick != false)
                         {
                             if (Cell[i, j].IsClick == true)
                             {
@@ -174,8 +177,9 @@ namespace MineSwepper.Draw
                 GameOver(graphics, Cell, label1, 1, globals);
             }
         }
+
         private void GameOver(Graphics graphics, Cells[,] cell,
-         Label label1, int v, Globals globals)
+                              Label label1, int v, Globals globals)
         {
             MainForm mf = new MainForm();
 
@@ -242,10 +246,6 @@ namespace MineSwepper.Draw
                                     {
                                         brushMine = Brushes.Blue;
                                         brushMineM = Brushes.DarkBlue;
-                                        c++;
-                                    }
-                                    if (c == 6)
-                                    {
                                         c = 0;
                                     }
                                 }
