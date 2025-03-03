@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Drawing;
-//using System.IO;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 
 namespace MineSwepperGame.MineSwepperCodes
 {
@@ -25,6 +20,8 @@ namespace MineSwepperGame.MineSwepperCodes
         public Brush brushSoil1 = Brushes.SandyBrown;
         public Brush brushSoil2 = Brushes.NavajoWhite;
         public Brush flagColor = Brushes.SkyBlue;
+        public Brush hoverColor = Brushes.LightBlue;
+
 
         public Pen pen = new Pen(Brushes.DarkOliveGreen, 3);
         public Pen pen2 = new Pen(Brushes.DarkGreen, 2);

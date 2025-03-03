@@ -78,35 +78,35 @@
             // easyToolStripMenuItem
             // 
             this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-            this.easyToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.easyToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.easyToolStripMenuItem.Text = "Easy";
             this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
             // 
             // mediumToolStripMenuItem
             // 
             this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.mediumToolStripMenuItem.Text = "Medium";
             this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
             // 
             // hardToolStripMenuItem
             // 
             this.hardToolStripMenuItem.Name = "hardToolStripMenuItem";
-            this.hardToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.hardToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.hardToolStripMenuItem.Text = "Hard";
             this.hardToolStripMenuItem.Click += new System.EventHandler(this.hardToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(157, 26);
             this.toolStripMenuItem2.Text = "Ultra Hard";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // pauseToolStripMenuItem
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.pauseToolStripMenuItem.Text = "Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
@@ -157,6 +157,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainForm_Paint);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseClick);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

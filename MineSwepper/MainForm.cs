@@ -119,11 +119,13 @@ namespace MineSwepper
                 }
             }
         }
+
         public void MainForm_MouseClick(object sender, MouseEventArgs e)
         {
             DoubleBuffered = true;
             G.MouseClickAction(e, label1, timer,label2, globals);
         }
+
         private void Timer(object sender, EventArgs e)
         {
             
@@ -153,6 +155,7 @@ namespace MineSwepper
                 Close();
             }
         }
+
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
         }
@@ -187,6 +190,7 @@ namespace MineSwepper
             Invalidate();
             CenterToScreen();
         }
+
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pauseToolStripMenuItem.Text = "Pause";
@@ -215,6 +219,7 @@ namespace MineSwepper
             Invalidate();
 
         }
+
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pauseToolStripMenuItem.Text = "Pause";
@@ -242,6 +247,7 @@ namespace MineSwepper
             CenterToScreen();
             Invalidate();
         }
+
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pauseToolStripMenuItem.Text = "Pause";
@@ -272,10 +278,12 @@ namespace MineSwepper
         {
             Application.Restart();
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
 
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             System.Environment.Exit(0);
@@ -322,6 +330,7 @@ namespace MineSwepper
             }
 
         }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
 
@@ -329,6 +338,11 @@ namespace MineSwepper
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+        }
+
+        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            G.OnMouseMove(e, label1, globals, this); // Pass the current form as the control
         }
 
         private void Folder()
