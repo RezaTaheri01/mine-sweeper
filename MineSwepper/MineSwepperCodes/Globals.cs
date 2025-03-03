@@ -42,8 +42,8 @@ namespace MineSwepperGame.MineSwepperCodes
         // Board Width => cell in row
         // Board Height => cell in column
         int[] easy = new int[5] { 40, 10, 10, 10, 75 };
-        int[] medium = new int[5] { 30, 16, 16, 18, 40 };
-        int[] hard = new int[5] { 28, 20, 20, 20, 20 };
+        int[] medium = new int[5] { 32, 16, 16, 18, 40 };
+        int[] hard = new int[5] { 30, 20, 20, 20, 20 };
         int[] ultra_hard = new int[5] { 28, 30, 20, 22, 7 };
         // width and height should be even that labels place in the middle
 
