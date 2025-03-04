@@ -70,7 +70,7 @@ namespace MineSwepper.Draw
                                 brush = brushGrass1;
                             }
                         }
-                        if (Cell[i, j].flag != true || Cell[i, j].IsClick != false)
+                        if (Cell[i, j].flag == false || Cell[i, j].IsClick == true)
                         {
                             if (Cell[i, j].IsClick == true)
                             {
@@ -232,8 +232,8 @@ namespace MineSwepper.Draw
                                     }
                                     else if (c == 4)
                                     {
-                                        brushMine = Brushes.Yellow;
-                                        brushMineM = Brushes.DarkGray;
+                                        brushMine = Brushes.BlanchedAlmond;
+                                        brushMineM = Brushes.DarkGoldenrod;
                                         c++;
                                     }
                                     else if (c == 5)
@@ -244,8 +244,8 @@ namespace MineSwepper.Draw
                                     }
                                     else if (c == 6)
                                     {
-                                        brushMine = Brushes.Blue;
-                                        brushMineM = Brushes.DarkBlue;
+                                        brushMine = Brushes.Coral;
+                                        brushMineM = Brushes.Crimson;
                                         c = 0;
                                     }
                                 }

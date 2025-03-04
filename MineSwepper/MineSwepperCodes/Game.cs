@@ -100,48 +100,57 @@ namespace MineSwepper.MineSwepperCodes
         // Hover over cells
         internal void OnMouseMove(MouseEventArgs e, Label PauseLabel, Globals globals, Control boardControl)
         {
-            if (!PauseLabel.Visible)
+            try
             {
-                int X = e.X - 7;  // Apply padding
-                int Y = e.Y - 60;
-
-                X /= globals.curr_cube_size;
-                Y /= globals.curr_cube_size;
-
-                bool inBounds = (X >= 0 && Y >= 0 && X < globals.curr_board_width && Y < globals.curr_board_height);
-                Point currentCell = inBounds ? new Point(X, Y) : new Point(-1, -1);
-
-                if (previousCell != currentCell)
+                if (!PauseLabel.Visible)
                 {
-                    using (Graphics g = boardControl.CreateGraphics())
-                    {
-                        // Restore previous cell color
-                        if (previousCell.X != -1 && previousCell.Y != -1)
-                        {
-                            int prevX = previousCell.X;
-                            int prevY = previousCell.Y;
+                    int X = e.X - 7;  // Apply padding
+                    int Y = e.Y - 60;
 
-                            if (prevX >= 0 && prevY >= 0 && prevX < globals.curr_board_width && prevY < globals.curr_board_height)
+                    X /= globals.curr_cube_size;
+                    Y /= globals.curr_cube_size;
+
+                    bool inBounds = (X >= 0 && Y >= 0 && X < globals.curr_board_width && Y < globals.curr_board_height);
+                    Point currentCell = inBounds ? new Point(X, Y) : new Point(-1, -1);
+
+                    if (previousCell != currentCell)
+                    {
+                        using (Graphics g = boardControl.CreateGraphics())
+                        {
+                            // Restore previous cell color
+                            if (previousCell.X != -1 && previousCell.Y != -1)
                             {
-                                // Restore original color
-                                Brush originalBrush = ((prevX + prevY) % 2 == 0 ? globals.brushGrass1 : globals.brushGrass2);
-                                if (!Cell[prevX, prevY].IsClick && !Cell[prevX, prevY].flag)
+                                int prevX = previousCell.X;
+                                int prevY = previousCell.Y;
+
+                                if (prevX >= 0 && prevY >= 0 && prevX < globals.curr_board_width && prevY < globals.curr_board_height)
                                 {
-                                    g.FillRectangle(originalBrush, Cell[prevX, prevY].Rect);
+                                    // Restore original color
+                                    Brush originalBrush = ((prevX + prevY) % 2 == 0 ? globals.brushGrass1 : globals.brushGrass2);
+                                    Pen pen = globals.pen2;
+                                    if (!Cell[prevX, prevY].IsClick && !Cell[prevX, prevY].flag)
+                                    {
+                                        g.FillRectangle(originalBrush, Cell[prevX, prevY].Rect);
+                                        g.DrawRectangle(pen, Cell[prevX, prevY].Rect);
+                                    }
                                 }
                             }
-                        }
 
-                        // Draw hover ONLY if cell is unclicked, unflagged, and within bounds
-                        if (inBounds && !Cell[X, Y].flag && !Cell[X, Y].IsClick)
-                        {
-                            g.FillRectangle(globals.hoverColor, Cell[X, Y].Rect);
-                        }
+                            // Draw hover ONLY if cell is unclicked, unflagged, and within bounds
+                            if (inBounds && !Cell[X, Y].flag && !Cell[X, Y].IsClick)
+                            {
+                                g.FillRectangle(globals.hoverColor, Cell[X, Y].Rect);
+                            }
 
-                        // Update previous cell only if hover was drawn
-                        previousCell = currentCell;
+                            // Update previous cell only if hover was drawn
+                            previousCell = currentCell;
+                        }
                     }
                 }
+            }
+            catch
+            {
+                // null object error
             }
         }
 
