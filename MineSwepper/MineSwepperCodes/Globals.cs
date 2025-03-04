@@ -5,6 +5,9 @@ namespace MineSwepperGame.MineSwepperCodes
 {
     class Globals
     {
+        // Disable hover by set it to false
+        public bool hoverOn = false;
+
         public string workingDirectory;
         public string Path;
 

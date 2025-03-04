@@ -50,6 +50,16 @@ namespace MineSwepper
 
             label2.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 32, 0);
             label1.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 64, 31);
+
+            if (globals.hoverOn)
+            {
+                hoverOnToolStripMenuItem.Text = "Hover Off";
+
+            }
+            else
+            {
+                hoverOnToolStripMenuItem.Text = "Hover On";
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -342,7 +352,22 @@ namespace MineSwepper
 
         private void MainForm_MouseMove(object sender, MouseEventArgs e)
         {
-            G.OnMouseMove(e, label1, globals, this); // Pass the current form as the control
+            if (globals.hoverOn)
+                G.OnMouseMove(e, label1, globals, this); // Pass the current form as the control
+        }
+
+        private void hoverOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (globals.hoverOn)
+            {
+                hoverOnToolStripMenuItem.Text = "Hover On";
+            }
+            else
+            {
+                hoverOnToolStripMenuItem.Text = "Hover Off";
+            }
+            globals.hoverOn = !globals.hoverOn;
+            G.ReDraw();
         }
 
         private void Folder()
