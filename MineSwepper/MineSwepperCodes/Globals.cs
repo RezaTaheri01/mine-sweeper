@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Drawing;
-//using System.IO;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 
 namespace MineSwepperGame.MineSwepperCodes
 {
     class Globals
     {
+        // Disable hover by set it to false
+        public bool hoverOn = false;
+
         public string workingDirectory;
         public string Path;
 
@@ -24,7 +22,9 @@ namespace MineSwepperGame.MineSwepperCodes
         public Brush brushGrass2 = Brushes.DarkGreen;
         public Brush brushSoil1 = Brushes.SandyBrown;
         public Brush brushSoil2 = Brushes.NavajoWhite;
-        public Brush flagColor = Brushes.SkyBlue;
+        public Brush flagColor = Brushes.PaleVioletRed;
+        public Brush hoverColor = Brushes.LightSeaGreen;
+
 
         public Pen pen = new Pen(Brushes.DarkOliveGreen, 3);
         public Pen pen2 = new Pen(Brushes.DarkGreen, 2);
@@ -41,7 +41,7 @@ namespace MineSwepperGame.MineSwepperCodes
         // Cube Size(cell), Board Width, Board Height, Mines Precents, minesAnimationTimer
         // Board Width => cell in row
         // Board Height => cell in column
-        int[] easy = new int[5] { 40, 10, 10, 10, 75 };
+        int[] easy = new int[5] { 44, 10, 10, 10, 75 };
         int[] medium = new int[5] { 32, 16, 16, 18, 40 };
         int[] hard = new int[5] { 30, 20, 20, 20, 20 };
         int[] ultra_hard = new int[5] { 28, 30, 20, 22, 7 };

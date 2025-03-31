@@ -50,6 +50,16 @@ namespace MineSwepper
 
             label2.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 32, 0);
             label1.Location = new Point((globals.curr_board_width / 2) * globals.curr_cube_size - 64, 31);
+
+            if (globals.hoverOn)
+            {
+                hoverOnToolStripMenuItem.Text = "Hover Off";
+
+            }
+            else
+            {
+                hoverOnToolStripMenuItem.Text = "Hover On";
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -119,11 +129,13 @@ namespace MineSwepper
                 }
             }
         }
+
         public void MainForm_MouseClick(object sender, MouseEventArgs e)
         {
             DoubleBuffered = true;
             G.MouseClickAction(e, label1, timer,label2, globals);
         }
+
         private void Timer(object sender, EventArgs e)
         {
             
@@ -153,6 +165,7 @@ namespace MineSwepper
                 Close();
             }
         }
+
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
         }
@@ -187,6 +200,7 @@ namespace MineSwepper
             Invalidate();
             CenterToScreen();
         }
+
         private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pauseToolStripMenuItem.Text = "Pause";
@@ -215,6 +229,7 @@ namespace MineSwepper
             Invalidate();
 
         }
+
         private void hardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pauseToolStripMenuItem.Text = "Pause";
@@ -242,6 +257,7 @@ namespace MineSwepper
             CenterToScreen();
             Invalidate();
         }
+
         private void easyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pauseToolStripMenuItem.Text = "Pause";
@@ -272,10 +288,12 @@ namespace MineSwepper
         {
             Application.Restart();
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
 
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             System.Environment.Exit(0);
@@ -322,6 +340,7 @@ namespace MineSwepper
             }
 
         }
+
         private void button1_Click_1(object sender, EventArgs e)
         {
 
@@ -329,6 +348,26 @@ namespace MineSwepper
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+        }
+
+        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (globals.hoverOn)
+                G.OnMouseMove(e, label1, globals, this); // Pass the current form as the control
+        }
+
+        private void hoverOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (globals.hoverOn)
+            {
+                hoverOnToolStripMenuItem.Text = "Hover On";
+            }
+            else
+            {
+                hoverOnToolStripMenuItem.Text = "Hover Off";
+            }
+            globals.hoverOn = !globals.hoverOn;
+            G.ReDraw();
         }
 
         private void Folder()
