@@ -53,12 +53,19 @@ namespace MineSwepper
 
             if (globals.hoverOn)
             {
-                hoverOnToolStripMenuItem.Text = "Hover Off";
+                hoverOnToolStripMenuItem.Text = globals.hoverOn_text;
+            }else
+            {
+                hoverOnToolStripMenuItem.Text = globals.hoverOff_text;
+            }
 
+            if (globals.assistOn)
+            {
+                turnOnAssistToolStripMenuItem.Text = globals.assistOn_text;
             }
             else
             {
-                hoverOnToolStripMenuItem.Text = "Hover On";
+                turnOnAssistToolStripMenuItem.Text = globals.assistOff_text;
             }
         }
 
@@ -358,16 +365,36 @@ namespace MineSwepper
 
         private void hoverOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            globals.hoverOn = !globals.hoverOn;
             if (globals.hoverOn)
             {
-                hoverOnToolStripMenuItem.Text = "Hover On";
+                hoverOnToolStripMenuItem.Text = globals.hoverOn_text;
             }
             else
             {
-                hoverOnToolStripMenuItem.Text = "Hover Off";
+                hoverOnToolStripMenuItem.Text = globals.hoverOff_text;
             }
-            globals.hoverOn = !globals.hoverOn;
-            G.ReDraw();
+            if (label1.Visible == false)
+            {
+                G.ReDraw();
+            }
+        }
+
+        private void turnOnAssistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            globals.assistOn = !globals.assistOn;
+            if (globals.assistOn)
+            {
+                turnOnAssistToolStripMenuItem.Text = globals.assistOn_text;
+            }
+            else
+            {
+                turnOnAssistToolStripMenuItem.Text = globals.assistOff_text;
+            }
+            if (label1.Visible == false)
+            {
+                G.ReDraw();
+            }
         }
 
         private void Folder()
