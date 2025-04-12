@@ -3,6 +3,9 @@ using System.Drawing;
 using MineSwepper.Draw;
 using System.Windows.Forms;
 using MineSwepperGame.MineSwepperCodes;
+using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace MineSwepper.MineSwepperCodes
 {
@@ -64,10 +67,14 @@ namespace MineSwepper.MineSwepperCodes
                         if (X < globals.curr_board_width && Y < globals.curr_board_height)
                         {
                             //label1.Text = "[" + X + "," + Y + "]";
-                            if (Cell[X, Y].flag == false)
+                            if (Cell[X, Y].flag == false && Cell[X, Y].IsClick == false)
                             {
                                 Cell[X, Y].IsClick = true;
                                 ZeroCell(Cell, X, Y, PauseLabel, globals);
+                                if (globals.assistOn)
+                                {
+                                    SuggestNextMove(globals);
+                                }
                             }
                         }
                         if (PauseLabel.Visible == false)
@@ -288,5 +295,159 @@ namespace MineSwepper.MineSwepperCodes
                 label1.Visible = true;
             }
         }
+
+
+        public void SuggestNextMove(Globals globals)
+        {
+            // Lists for safe moves and guaranteed bombs
+            List<Point> safeMoves = new List<Point>();
+            List<Point> guaranteedBombs = new List<Point>();
+            // Dictionary to store bomb probabilities for unclicked, unflagged cells
+            Dictionary<Point, double> bombProbabilities = new Dictionary<Point, double>();
+
+            // Step 1: Analyze all clicked cells to find safe moves, guaranteed bombs, and probabilities
+            for (int i = 0; i < globals.curr_board_width; i++)
+            {
+                for (int j = 0; j < globals.curr_board_height; j++)
+                {
+                    if (Cell[i, j].IsClick && Cell[i, j].MineCounter > 0)
+                    {
+                        List<Point> neighbors = GetNeighbors(i, j, globals);
+                        int unclickedNeighbors = 0;
+                        int flaggedNeighbors = 0;
+
+                        // Count unclicked and flagged neighbors
+                        foreach (var neighbor in neighbors)
+                        {
+                            if (!Cell[neighbor.X, neighbor.Y].IsClick && !Cell[neighbor.X, neighbor.Y].flag)
+                            {
+                                unclickedNeighbors++;
+                            }
+                            if (Cell[neighbor.X, neighbor.Y].flag)
+                            {
+                                flaggedNeighbors++;
+                            }
+                        }
+
+                        // Case 1: All mines are flagged -> remaining unclicked neighbors are safe (0% probability)
+                        if (Cell[i, j].MineCounter == flaggedNeighbors && unclickedNeighbors > 0)
+                        {
+                            foreach (var neighbor in neighbors)
+                            {
+                                if (!Cell[neighbor.X, neighbor.Y].IsClick && !Cell[neighbor.X, neighbor.Y].flag)
+                                {
+                                    safeMoves.Add(neighbor);
+                                }
+                            }
+                        }
+                        // Case 2: Unclicked neighbors exactly match remaining mines -> they are all bombs (100% probability)
+                        else if (Cell[i, j].MineCounter - flaggedNeighbors == unclickedNeighbors && unclickedNeighbors > 0)
+                        {
+                            foreach (var neighbor in neighbors)
+                            {
+                                if (!Cell[neighbor.X, neighbor.Y].IsClick && !Cell[neighbor.X, neighbor.Y].flag)
+                                {
+                                    guaranteedBombs.Add(neighbor);
+                                }
+                            }
+                        }
+                        // Case 3: Calculate bomb probabilities for remaining cases
+                        else if (unclickedNeighbors > 0 && Cell[i, j].MineCounter > flaggedNeighbors)
+                        {
+                            double probability = (double)(Cell[i, j].MineCounter - flaggedNeighbors) / unclickedNeighbors;
+                            foreach (var neighbor in neighbors)
+                            {
+                                if (!Cell[neighbor.X, neighbor.Y].IsClick && !Cell[neighbor.X, neighbor.Y].flag)
+                                {
+                                    if (!bombProbabilities.ContainsKey(neighbor))
+                                    {
+                                        bombProbabilities[neighbor] = probability;
+                                    }
+                                    else
+                                    {
+                                        // Use the maximum probability for overlapping constraints
+                                        bombProbabilities[neighbor] = Math.Max(bombProbabilities[neighbor], probability);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //// Step 2: Suggest a safe move if available (0% bomb probability)
+            //if (safeMoves.Count > 0)
+            //{
+            //    Point safeMove = safeMoves[0]; // Pick the first safe move
+            //    Console.WriteLine($"Suggesting safe cell at ({safeMove.X}, {safeMove.Y}) with 0% chance of being a bomb.");
+            //    return;
+            //}
+
+            // Step 3: Flag guaranteed bombs and redraw if any are found
+            if (guaranteedBombs.Count > 0)
+            {
+                foreach (var bomb in guaranteedBombs)
+                {
+                    Cell[bomb.X, bomb.Y].flag = true;
+                }
+                //Console.WriteLine($"Flagged {guaranteedBombs.Count} guaranteed bomb(s).");
+                //ReDraw();
+                return;
+            }
+
+            //// Step 4: Suggest the cell with the lowest bomb probability
+            //if (bombProbabilities.Count > 0)
+            //{
+            //    var minProbabilityCell = bombProbabilities.OrderBy(kvp => kvp.Value).First();
+            //    Console.WriteLine($"No clear safe move. Suggesting cell at ({minProbabilityCell.Key.X}, {minProbabilityCell.Key.Y}) with lowest bomb probability of {minProbabilityCell.Value:P2}.");
+            //    return;
+            //}
+
+            //// Step 5: Fallback - suggest a random unclicked cell if no probabilities are available
+            //for (int i = 0; i < globals.curr_board_width; i++)
+            //{
+            //    for (int j = 0; j < globals.curr_board_height; j++)
+            //    {
+            //        if (!Cell[i, j].IsClick && !Cell[i, j].flag)
+            //        {
+            //            Console.WriteLine($"No probability data available. Randomly suggesting cell at ({i}, {j}).");
+            //            return;
+            //        }
+            //    }
+            //}
+
+            //Console.WriteLine("No unclicked cells left to suggest.");
+        }
+
+
+        private List<Point> GetNeighbors(int x, int y, Globals globals)
+        {
+            List<Point> neighbors = new List<Point>();
+
+            // Check all 8 possible neighbors (up, down, left, right, and diagonals)
+            for (int dx = -1; dx <= 1; dx++)
+            {
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    // Skip the center cell (itself)
+                    if (dx == 0 && dy == 0) continue;
+
+                    int nx = x + dx;
+                    int ny = y + dy;
+
+                    // Check if the neighbor is within bounds
+                    if (nx >= 0 && ny >= 0 && nx < globals.curr_board_width && ny < globals.curr_board_height)
+                    {
+                        if (Cell[nx, ny].IsClick == false)
+                        {
+                            neighbors.Add(new Point(nx, ny));
+                        }
+                    }
+                }
+            }
+
+            return neighbors;
+        }
+
     }
 }
