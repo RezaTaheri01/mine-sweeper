@@ -333,7 +333,7 @@ namespace MineSwepper
                 else
                 {
                     label1.ForeColor = Color.WhiteSmoke;
-                    label1.Text = "    Puase";
+                    label1.Text = "    Paused";
                     label1.Visible = true;
                     timer.Stop();
                     pauseToolStripMenuItem.Text = "Resume";
